@@ -39,11 +39,11 @@ public class SeleniumFactory {
             case "chrome":
                 if (driver == null) {
                     ChromeOptions chromeOptions = new ChromeOptions();
-                    if (System.getProperty("os.name").equals("Linux")){
-                        chromeOptions.addArguments("--no-sandbox");
-                        chromeOptions.addArguments("--headless");
-                        chromeOptions.addArguments("start-maximized");
-                    }
+//                    if (System.getProperty("os.name").equals("Linux")){
+//                        chromeOptions.addArguments("--no-sandbox");
+//                        chromeOptions.addArguments("--headless");
+//                        chromeOptions.addArguments("start-maximized");
+//                    }
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(chromeOptions);
                     drivers.put("chrome", driver);
