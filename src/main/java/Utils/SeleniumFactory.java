@@ -3,6 +3,7 @@ package Utils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -37,8 +38,13 @@ public class SeleniumFactory {
                 break;
             case "chrome":
                 if (driver == null) {
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    if (System.getProperty("os.name").equals("Linux")){
+                        chromeOptions.addArguments("--no-sandbox");
+                        chromeOptions.addArguments("--headless");
+                    }
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    driver = new ChromeDriver(chromeOptions);
                     drivers.put("chrome", driver);
                 }
                 break;
