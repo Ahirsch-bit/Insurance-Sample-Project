@@ -1,6 +1,7 @@
 package Utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -39,11 +40,16 @@ public class SeleniumFactory {
             case "chrome":
                 if (driver == null) {
                     ChromeOptions chromeOptions = new ChromeOptions();
-//                    if (System.getProperty("os.name").equals("Linux")){
-//                        chromeOptions.addArguments("--no-sandbox");
-//                        chromeOptions.addArguments("--headless");
-//                        chromeOptions.addArguments("start-maximized");
-//                    }
+                    if (System.getProperty("os.name").equals("Linux")){
+                        chromeOptions.addArguments("enable-automation");
+                        chromeOptions.addArguments("--headless");
+                        chromeOptions.addArguments("--window-size=1920,1080");
+                        chromeOptions.addArguments("--no-sandbox");
+                        chromeOptions.addArguments("--disable-extensions");
+                        chromeOptions.addArguments("--dns-prefetch-disable");
+                        chromeOptions.addArguments("--disable-gpu");
+                        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                    }
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(chromeOptions);
                     drivers.put("chrome", driver);
