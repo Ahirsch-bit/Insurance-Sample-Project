@@ -42,6 +42,7 @@ public class SeleniumFactory {
                     if (System.getProperty("os.name").equals("Linux")){
                         chromeOptions.addArguments("--no-sandbox");
                         chromeOptions.addArguments("--headless");
+                        chromeOptions.addArguments("start-maximized");
                     }
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(chromeOptions);
